@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import HomeScreen from "../screens/HomeScreen";
 import CartScreen from "../screens/CartScreen";
-import ProductDetailsScreen from "../screens/ProducDetallScreens";
+import ProductDetailsScreen from "../screens/ProducDetallScreens.js";
 const Stack = createStackNavigator();
 
 const MainStackNavigator = () => {

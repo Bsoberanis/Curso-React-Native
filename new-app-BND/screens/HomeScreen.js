@@ -1,12 +1,89 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { FlatList, StyleSheet, Text, View, Image, Dimensions, Button } from "react-native-web";
 
-const HomeScreen = () => {
+const { width, height } = Dimensions.get('window');
+
+const products =[
+    {
+        id: 1,
+        name: 'Product 1',
+        price: 100,
+        image:'https://picsum.photos/200/300/?random'},
+    {
+        id: 2,
+        name: 'Product 2',
+        price: 100,
+        image:'https://picsum.photos/200/300/?random'},
+        
+    {
+        id: 3, 
+        name: 'Product 3', 
+        price: 100,
+        image:'https://picsum.photos/200/300/?random'},
+
+]
+const HomeScreen = (navigation) => {
     return (
-        <View>
-            <Text>Home  Screen</Text>
+        <View style={styles.container}>
+            <FlatESList
+            data={products}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+                <View style={styles.itemContainer}>
+                    <Text style={styles.text}>{ item.name}</Text>
+                    <Text style={styles.text}>${item.price}</Text>
+                    <Image source={{ uri: product.image }} style={style.image} />
+                    
+                    
+                    <Button
+                        title="Add to Cart"
+                        onPress={() => navigation.navigate('ProductDetails', { product: item })}
+                           />
+                </View>
+            )}
+            />
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding:10,
+    },
+    itemContainer: {
+        
+        alignItems: 'center',
+        marginBottom: 20,
+        borderWidth: 1,
+        borderColor: '#ddd',
+        padding: 10,
+        backgroundColor: '#fff',
+        shadowColor: '#000',
+        shadowOffset: {width: 10,height: 2},
+        shadowOpacity: 0.2,
+    },
+    image:{
+        width: width*0.9, // Adjust width to fit within the container
+        height: width*0.5,
+        marginBottom: 10,
+        //borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#ddd',
+        padding: 10,
+        backgroundColor: '#fff',
+        shadowColor: '#000',
+        shadowOffset: { width: 10, height: 2 },
+        shadowOpacity: 0.2,
+    },
+    text: {
+        fontSize: 18,
+        marginBottom: 10,
+        color: '#000',
+        textAlign: 'center',
+    },
+        
+        
+});
 
 export default HomeScreen;
